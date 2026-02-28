@@ -1,0 +1,19 @@
+# Obsidian user-specific settings
+AI_Employee_Vault/.obsidian/
+
+# Watcher runtime files
+AI_Employee_Vault/watcher.log
+AI_Employee_Vault/watcher_state.json
+
+# Python virtual environment
+watchers/venv/
+watchers/__pycache__/
+watchers/*.pyc
+
+# Claude Code temporary files
+.claude/tmp/
+.claude/cache/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
