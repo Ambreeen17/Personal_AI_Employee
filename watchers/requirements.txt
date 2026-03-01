@@ -11,3 +11,7 @@ aiosmtplib>=3.0.0
 
 # Task Scheduler Dependencies
 pyyaml>=6.0
+croniter>=2.0.0
+
+# LinkedIn Poster Dependencies
+playwright>=1.40.0

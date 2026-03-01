@@ -1,4 +1,4 @@
-# Personal AI Employee - Bronze Tier
+# Personal AI Employee - Silver Tier ✅
 
 **Tagline:** Your life and business on autopilot. Local-first, agent-driven, human-in-the-loop.
 
@@ -6,14 +6,16 @@
 
 This is a Personal AI Employee (Digital FTE) built using Claude Code and Obsidian. The AI Employee proactively manages personal and business affairs 24/7 by monitoring inputs, processing tasks, and maintaining a dashboard.
 
-## Current Tier: Bronze ✅
+## Current Tier: Silver ✅
 
-### Bronze Tier Features (Completed)
-- ✅ Obsidian vault with Dashboard.md and Company_Handbook.md
-- ✅ File system Watcher (monitors /Inbox folder)
-- ✅ Basic folder structure: /Inbox, /Needs_Action, /Done, /Plans, /In_Progress
-- ✅ Agent Skills for AI functionality
-- ✅ Claude Code integration for reading/writing to vault
+### Silver Tier Features (Implemented)
+- ✅ **All Bronze Tier features**
+- ✅ **Gmail Watcher** - Monitor Gmail inbox via Google API
+- ✅ **Email Sender MCP** - Send emails via SMTP with approval workflow
+- ✅ **Approval Workflow** - Human-in-the-loop for sensitive actions
+- ✅ **Task Scheduler** - Automate recurring tasks via cron/Task Scheduler
+- ✅ **LinkedIn Poster** - Auto-post content with browser automation
+- ✅ **Complete documentation** and setup guides
 
 ## Project Structure
 
@@ -27,16 +29,44 @@ Personal_AI_Employee/
 │   ├── In_Progress/            # Items being worked on
 │   ├── Done/                   # Completed items
 │   ├── Plans/                  # Multi-step project plans
-│   └── watcher.log             # Watcher activity log
+│   ├── Pending_Approval/       # Items awaiting human review
+│   │   ├── Email/              # Email drafts
+│   │   ├── LinkedIn/           # LinkedIn post drafts
+│   │   └── Sensitive/          # Critical actions
+│   ├── Ready_To_Send/          # Approved items ready to execute
+│   │   └── Email/
+│   ├── Ready_To_Post/          # Approved posts ready to publish
+│   │   └── LinkedIn/
+│   └── Rejected/               # Items that were not approved
 ├── watchers/                   # Monitoring scripts
 │   ├── file_system_watcher.py  # File system monitor
+│   ├── gmail_watcher.py        # Gmail API integration
+│   ├── linkedin_poster.py      # LinkedIn auto-poster
+│   ├── scheduler.py            # Task scheduler
+│   ├── validate_silver_tier.py # Validation script
 │   ├── requirements.txt        # Python dependencies
+│   ├── schedule.yaml           # Schedule configuration
+│   ├── install_scheduler.sh    # Cron job installer
+│   ├── install_scheduler.bat   # Task Scheduler installer
 │   ├── start_watcher.bat       # Windows startup script
 │   └── start_watcher.sh        # Unix startup script
-└── .claude/
-    └── skills/
-        ├── ai-employee/        # AI Employee skill
-        └── browsing-with-playwright/  # Browser automation
+├── mcp_servers/                # MCP servers
+│   └── email_sender/
+│       ├── email_server.py     # Email MCP server
+│       ├── .env.template       # Configuration template
+│       └── requirements.txt
+├── .claude/
+│   └── skills/                  # Agent Skills
+│       ├── ai-employee/        # AI Employee skill
+│       ├── gmail-watcher/      # Gmail monitoring
+│       ├── email-sender/       # Email sending
+│       ├── linkedin-poster/    # LinkedIn posting
+│       ├── approval-workflow/  # Approval system
+│       ├── planning-agent/     # Project planning
+│       └── task-scheduler/     # Task scheduling
+├── README.md                    # This file
+├── SILVER_TIER_IMPLEMENTATION_PLAN.md  # Implementation guide
+└── SILVER_TIER_SETUP.md        # Setup instructions
 ```
 
 ## Quick Start
@@ -121,30 +151,72 @@ With Claude Code, use the AI Employee skill to process tasks:
 4. **Complete**: Item moved to `/Done/` with completion notes
 5. **Update**: Dashboard.md updated with current status
 
-## Testing the Bronze Tier
+## Quick Start
 
-### Test 1: File System Watcher
+### 1. Install Dependencies
 
-1. Start the Watcher using the startup script
-2. Create a test file in `AI_Employee_Vault/Inbox/`:
+```bash
+# Python dependencies
+pip install -r watchers/requirements.txt
+```
+
+### 2. Validate Setup
+
+```bash
+# Run validation script
+python watchers/validate_silver_tier.py
+```
+
+### 3. Configure Components
+
+See [SILVER_TIER_SETUP.md](SILVER_TIER_SETUP.md) for detailed setup:
+- Gmail API setup
+- SMTP configuration
+- Cron/Task Scheduler jobs
+
+### 4. Use the AI Employee
+
+With Claude Code, use the AI Employee skill:
+
+```
+/ai-employee
+```
+
+## Testing the Silver Tier
+
+### Validation
+
+```bash
+# Run validation script
+cd watchers
+python validate_silver_tier.py
+```
+
+### Test Complete Workflow
+
+1. **Gmail Integration** (after OAuth setup)
    ```bash
-   echo "Test task" > AI_Employee_Vault/Inbox/test.txt
+   python watchers/gmail_watcher.py --auth
+   bash watchers/start_gmail_watcher.sh
    ```
-3. Check `AI_Employee_Vault/Needs_Action/` for a new action file
-4. Verify the action file contains the test content
 
-### Test 2: AI Employee Processing
+2. **Email Sending** (after SMTP config)
+   ```bash
+   # Create draft in Pending_Approval/Email/
+   # Move to Ready_To_Send/Email/
+   # Email Sender MCP will send automatically
+   ```
 
-1. Open Claude Code
-2. Use the AI Employee skill to process pending items
-3. Verify items are moved to `/Done/`
-4. Check Dashboard.md for updates
+3. **LinkedIn Posting**
+   ```bash
+   python watchers/linkedin_poster.py --check-queue
+   ```
 
-### Test 3: Dashboard Integration
-
-1. Read `AI_Employee_Vault/Dashboard.md`
-2. Verify system status shows "Online"
-3. Check that pending tasks are reflected
+4. **Scheduled Tasks** (after cron/Task Scheduler setup)
+   ```bash
+   # Unix: crontab -l
+   # Windows: schtasks /query | findstr "AI Employee"
+   ```
 
 ## Configuration
 
@@ -179,15 +251,37 @@ The AI Employee follows rules defined in `Company_Handbook.md`:
 | Claude can't find vault | Verify VAULT_PATH in watcher script |
 | Permission denied | Run with appropriate permissions |
 
-## Next Steps: Silver Tier
+## Silver Tier Features ✅
 
-To upgrade to Silver Tier, add:
-1. Gmail Watcher (email monitoring)
-2. Email draft responses
-3. MCP server for sending emails
-4. Human-in-the-loop approval workflow
-5. Social media integration (LinkedIn)
-6. Scheduling via cron or Task Scheduler
+### Implemented Components
+- ✅ **Gmail Watcher** - Monitor Gmail inbox with Google API OAuth
+- ✅ **Email Sender MCP** - Send emails via SMTP with approval
+- ✅ **Approval Workflow** - Human-in-the-loop for sensitive actions
+- ✅ **Task Scheduler** - Automate tasks via cron/Task Scheduler
+- ✅ **LinkedIn Poster** - Auto-post content with browser automation
+- ✅ **Complete Documentation** - Setup guides and implementation plan
+
+### To Configure (One-Time Setup)
+
+1. **Gmail API Setup**
+   - Create project at Google Cloud Console
+   - Enable Gmail API
+   - Create OAuth credentials
+   - Run: `python watchers/gmail_watcher.py --auth`
+
+2. **SMTP Configuration**
+   - Copy `mcp_servers/email_sender/.env.template` to `.env`
+   - Add SMTP credentials
+
+3. **Scheduler Setup**
+   - Unix: Run `watchers/install_scheduler.sh`
+   - Windows: Run `watchers\install_scheduler.bat`
+
+4. **LinkedIn Setup**
+   - Install Playwright: `pip install playwright && playwright install chromium`
+   - Run: `python watchers/linkedin_poster.py --check-queue`
+
+See [SILVER_TIER_SETUP.md](SILVER_TIER_SETUP.md) for details.
 
 ## Resources
 
@@ -201,5 +295,6 @@ This project is part of the Personal AI Employee Hackathon.
 
 ---
 
-**Bronze Tier Completed**: 2026-02-28
-**Version**: 1.0
+**Silver Tier Completed**: 2026-02-28
+**Version**: 2.0
+**Status**: ✅ Implementation Complete, Ready for Configuration
