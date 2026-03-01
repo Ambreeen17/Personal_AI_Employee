@@ -1,0 +1,46 @@
+# WhatsApp Watcher Keywords Configuration
+# This file defines which keywords will trigger the WhatsApp Watcher to create action items
+
+# List of keywords that will be monitored in WhatsApp messages
+# When any of these keywords appear in a message, an action file will be created
+keywords:
+  # Urgency indicators - High priority
+  - urgent
+  - asap
+  - emergency
+  - immediately
+  - deadline
+  - as soon as possible
+
+  # Business terms - Normal priority
+  - invoice
+  - payment
+  - pricing
+  - quote
+  - proposal
+  - contract
+  - delivery
+  - shipment
+
+  # Requests for action
+  - help
+  - support
+  - meeting
+  - call
+  - discuss
+  - review
+
+  # Project status
+  - status
+  - update
+  - progress
+  - complete
+  - ready
+
+  # Issue indicators
+  - problem
+  - issue
+  - error
+  - bug
+  - broken
+  - not working

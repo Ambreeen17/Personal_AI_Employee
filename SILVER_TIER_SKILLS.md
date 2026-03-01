@@ -22,7 +22,7 @@ From the hackathon document, Silver Tier requires:
 
 ## 🎯 Silver Tier Skills Created
 
-### 1. Gmail Watcher (`gmail-watcher`)
+### 1. Gmail Watcher (`gmail-watcher`) ✅
 **Purpose:** Monitor Gmail inbox and create action items
 
 **Features:**
@@ -179,7 +179,44 @@ Approved/
 
 ---
 
-### 6. Task Scheduler (`task-scheduler`)
+### 6. Task Scheduler (`task-scheduler`) ✅
+
+---
+
+### 7. WhatsApp Watcher (`whatsapp-watcher`) 🔶 Optional
+**Purpose:** Monitor WhatsApp messages for urgent business communications
+
+**Features:**
+- Playwright browser automation
+- WhatsApp Web integration
+- Keyword-based message detection
+- Urgent message prioritization
+- Action file creation
+- Persistent browser session
+
+**Configuration:**
+- QR code authentication (one-time setup)
+- Customizable keywords (YAML)
+- Check interval (default: 60 seconds)
+- Session management
+
+**⚠️ Disclaimer:**
+- Automating WhatsApp Web may violate WhatsApp's ToS
+- For educational/personal use only
+- Consider official WhatsApp Business API for production
+- See: `WHATSAPP_WATCHER_SKILL.md` for full details
+
+**Workflow:**
+```
+WhatsApp Message (Keyword Detected) → Needs_Action/ → AI Processing → Response
+```
+
+**Files:**
+- `watchers/whatsapp_watcher.py`
+- `watchers/whatsapp_keywords.yaml`
+- `watchers/start_whatsapp_watcher.bat` (Windows)
+- `watchers/start_whatsapp_watcher.sh` (Unix)
+- `WHATSAPP_WATCHER_SKILL.md` (Documentation)
 **Purpose:** Schedule and automate recurring tasks
 
 **Features:**
@@ -296,12 +333,13 @@ Approved/
 |-------|------|--------------|--------|
 | **ai-employee** | Core | Vault structure | ✅ Bronze |
 | **browsing-with-playwright** | Tool | Playwright MCP | ✅ Bronze |
-| **gmail-watcher** | Watcher | Google API | 🆕 Silver |
-| **linkedin-poster** | Integration | Playwright MCP | 🆕 Silver |
-| **email-sender** | MCP Server | SMTP credentials | 🆕 Silver |
-| **planning-agent** | Agent | Vault structure | 🆕 Silver |
-| **approval-workflow** | Workflow | Folder structure | 🆕 Silver |
-| **task-scheduler** | Automation | cron/Task Scheduler | 🆕 Silver |
+| **gmail-watcher** | Watcher | Google API | ✅ Silver |
+| **linkedin-poster** | Integration | Playwright MCP | ✅ Silver |
+| **email-sender** | MCP Server | SMTP credentials | ✅ Silver |
+| **planning-agent** | Agent | Vault structure | ✅ Silver |
+| **approval-workflow** | Workflow | Folder structure | ✅ Silver |
+| **task-scheduler** | Automation | cron/Task Scheduler | ✅ Silver |
+| **whatsapp-watcher** | Watcher | Playwright | 🔶 Optional |
 
 ---
 

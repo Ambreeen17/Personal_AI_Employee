@@ -11,6 +11,10 @@ watchers/token.json
 watchers/credentials.json
 mcp_servers/email_sender/.env
 
+# WhatsApp Watcher (sensitive session data)
+watchers/whatsapp_session/
+watchers/whatsapp_state.json
+
 # Python virtual environment
 watchers/venv/
 watchers/__pycache__/
