@@ -4,6 +4,12 @@ AI_Employee_Vault/.obsidian/
 # Watcher runtime files
 AI_Employee_Vault/watcher.log
 AI_Employee_Vault/watcher_state.json
+AI_Employee_Vault/gmail_watcher.log
+
+# OAuth credentials (sensitive)
+watchers/token.json
+watchers/credentials.json
+mcp_servers/email_sender/.env
 
 # Python virtual environment
 watchers/venv/
