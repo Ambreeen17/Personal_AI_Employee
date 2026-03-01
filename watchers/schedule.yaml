@@ -1,0 +1,42 @@
+# Task Scheduler Configuration
+# Define recurring tasks for AI Employee automation
+
+schedule:
+  # Email tasks
+  - name: "Send pending emails"
+    frequency: "*/15 * * * *"  # Every 15 minutes
+    action: "send_emails"
+    enabled: true
+
+  - name: "Process new emails"
+    frequency: "*/30 * * * *"  # Every 30 minutes
+    action: "process_emails"
+    enabled: false  # Disabled until Gmail Watcher is set up
+
+  # Social media
+  - name: "Post to LinkedIn"
+    frequency: "0 18 * * 1,3,5"  # 6pm Mon, Wed, Fri
+    action: "post_linkedin"
+    enabled: false  # Disabled until LinkedIn Poster is set up
+
+  # Reports
+  - name: "Daily summary"
+    frequency: "0 20 * * *"  # 8pm daily
+    action: "daily_report"
+    enabled: true
+
+  - name: "Weekly audit"
+    frequency: "0 9 * * 1"  # 9am Monday
+    action: "weekly_audit"
+    enabled: false  # Can be enabled later
+
+  # Maintenance
+  - name: "Health check"
+    frequency: "0 */2 * * *"  # Every 2 hours
+    action: "health_check"
+    enabled: true
+
+  - name: "Cleanup logs"
+    frequency: "0 3 * * 0"  # 3am Sunday
+    action: "cleanup_logs"
+    enabled: false

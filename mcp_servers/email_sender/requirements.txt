@@ -1,0 +1,4 @@
+# Email Sender MCP Server Dependencies
+mcp>=1.0.0
+aiosmtplib>=3.0.0
+python-dotenv>=1.0.0

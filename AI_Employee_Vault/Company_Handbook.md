@@ -62,6 +62,16 @@ I am your AI Employee, a Digital FTE (Full-Time Equivalent) powered by Claude Co
 - `/Done/` - Completed items (archive)
 - `/Plans/` - Multi-step project plans
 
+### Approval Workflow Folders (Silver)
+- `/Pending_Approval/` - Items requiring human review
+  - `/Email/` - Email drafts awaiting approval
+  - `/LinkedIn/` - Social media posts awaiting approval
+  - `/Sensitive/` - Critical actions requiring approval
+- `/Ready_To_Send/` - Approved items ready to execute
+- `/Ready_To_Post/` - Approved posts ready to publish
+- `/Rejected/` - Items that were not approved
+- `/Approved/` - Archive of approved actions
+
 ### Naming Conventions
 - Action files: `YYYY-MM-DD_[source]_[subject].md`
 - Plans: `Plan_[project_name].md`
@@ -164,29 +174,145 @@ Always require approval for:
 
 ---
 
-## 10. Tier Progression
+## 10. Silver Tier Procedures
 
-### ✅ Bronze (Current)
-- Basic vault structure
-- File system Watcher
-- Manual task processing
+### Gmail Integration
 
-### 🚀 Upcoming: Silver
-- Gmail Watcher
-- Email drafts
-- Social media integration
-- MCP servers
+#### Gmail Watcher
+- **Monitors:** Gmail inbox for unread messages
+- **Check Interval:** Every 2 minutes (120 seconds)
+- **Priority Detection:**
+  - High: "urgent", "asap", "deadline", "important"
+  - Normal: General business communications
+  - Low: "fyi", "newsletter", "update"
+- **Action File Creation:** Creates markdown file in `/Needs_Action/`
+- **State Persistence:** Tracks processed message IDs to prevent duplicates
 
-### 🏆 Future: Gold
-- Multiple Watchers
-- Accounting integration
-- CEO Briefing
-- Full autonomy
+#### Email Processing Workflow
+1. Gmail Watcher detects new email
+2. Creates action file in `/Needs_Action/`
+3. AI Employee analyzes and categorizes
+4. Drafts response (autonomous)
+5. Saves draft to `/Pending_Approval/Email/`
+6. **Human reviews and approves**
+7. Moves to `/Ready_To_Send/Email/`
+8. Email Sender MCP sends the email
+9. Logs to `/Done/` with sent status
+
+### Email Sending (MCP Server)
+
+#### Email Sender Configuration
+- **SMTP Server:** Gmail (smtp.gmail.com:587) or custom
+- **Authentication:** OAuth 2.0 or App Password
+- **Encryption:** TLS/SSL
+- **MCP Server Port:** 8809
+
+#### Sending Workflow
+1. Check `/Ready_To_Send/Email/` folder
+2. Read approved email drafts
+3. Send via SMTP
+4. Move to `/Done/` with message ID
+5. Update log with delivery status
+
+#### Approval Required For
+- ✅ All outgoing emails
+- ✅ Emails with attachments
+- ✅ Emails to new recipients
+- ✅ Mass emails (multiple recipients)
+
+### LinkedIn Integration
+
+#### LinkedIn Poster
+- **Platform:** LinkedIn
+- **Method:** Browser automation via Playwright MCP
+- **Posting:** Requires approval before publishing
+- **Schedule:** Mon/Wed/Fri at 6pm (configurable)
+- **Content Types:**
+  - Business updates
+  - Thought leadership
+  - Product features
+  - Achievements
+
+#### LinkedIn Workflow
+1. AI generates post draft
+2. Saves to `/Pending_Approval/LinkedIn/`
+3. **Human reviews and edits**
+4. Approves for posting
+5. Moves to `/Ready_To_Post/LinkedIn/`
+6. Scheduler posts at scheduled time
+7. Tracks engagement in `/Accounting/LinkedIn_Metrics.md`
+
+### Task Scheduling
+
+#### Scheduled Actions
+- **Send Emails:** Every 15 minutes
+- **Process New Emails:** Every 30 minutes
+- **LinkedIn Posts:** Mon/Wed/Fri at 6pm
+- **Daily Report:** 8pm daily
+- **Weekly Audit:** Monday 9am
+- **Health Check:** Every 2 hours
+- **Log Cleanup:** Sunday 3am
+
+#### Scheduler Implementation
+- **Unix/Linux/macOS:** Cron jobs
+- **Windows:** Task Scheduler
+- **Configuration:** `watchers/schedule.yaml`
+
+### Approval Workflow
+
+#### Human-in-the-Loop Process
+All sensitive actions require explicit approval:
+
+```
+Draft Created (AI)
+    ↓
+Pending_Approval/ (Review Required)
+    ↓
+Human Decision:
+    ├── Approve → Ready_To_Send/ or Ready_To_Post/
+    ├── Reject → Rejected/
+    └── Edit → Return to Pending_Approval/
+    ↓
+Execution (Automated)
+    ↓
+Done/ (Archive)
+```
+
+#### Approval Safety Features
+- **Double-Check:** Confirmation prompt for critical actions
+- **Undo Window:** 30 seconds (email), 1 minute (social media)
+- **Logging:** Complete audit trail of all approvals
+- **Notifications:** Alert when items need approval
 
 ---
 
-**Last Updated:** 2026-02-28
-**Version:** 1.0 (Bronze Tier)
+## 11. Tier Progression
+
+### ✅ Bronze (Complete)
+- Basic vault structure
+- File system Watcher
+- Manual task processing
+- Core AI Employee skill
+
+### 🚀 Silver (Current - In Progress)
+- Gmail Watcher (Google API integration)
+- Email Sender MCP (SMTP integration)
+- Approval Workflow (human-in-the-loop)
+- Task Scheduler (cron/Task Scheduler)
+- LinkedIn Poster (browser automation)
+- Planning Agent (project plans)
+
+### 🏆 Gold (Future)
+- Multiple Watchers (WhatsApp, LinkedIn)
+- Accounting integration (Odoo)
+- CEO Briefing (weekly audits)
+- Full autonomy with Ralph Wiggum loop
+- Cross-domain integration
+
+---
+
+**Last Updated:** 2026-02-28 (Silver Tier Implementation Started)
+**Version:** 2.0 (Bronze Complete, Silver In Progress)
 
 ---
 

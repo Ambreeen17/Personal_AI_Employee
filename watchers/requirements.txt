@@ -1,2 +1,13 @@
 # File System Watcher Dependencies
 watchdog>=4.0.0
+
+# Gmail Watcher Dependencies
+google-api-python-client>=2.100.0
+google-auth-oauthlib>=1.0.0
+google-auth-httplib2>=0.1.0
+
+# Email Sender Dependencies
+aiosmtplib>=3.0.0
+
+# Task Scheduler Dependencies
+pyyaml>=6.0
