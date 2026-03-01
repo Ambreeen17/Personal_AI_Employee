@@ -24,19 +24,19 @@ class Colors:
 
     @classmethod
     def ok(cls, msg):
-        print(f"{cls.GREEN}✓{cls.ENDC} {msg}")
+        print(f"{cls.GREEN}[OK]{cls.ENDC} {msg}")
 
     @classmethod
     def fail(cls, msg):
-        print(f"{cls.RED}✗{cls.ENDC} {msg}")
+        print(f"{cls.RED}[FAIL]{cls.ENDC} {msg}")
 
     @classmethod
     def warn(cls, msg):
-        print(f"{cls.YELLOW}⚠{cls.ENDC} {msg}")
+        print(f"{cls.YELLOW}[WARN]{cls.ENDC} {msg}")
 
     @classmethod
     def info(cls, msg):
-        print(f"{cls.BLUE}ℹ{cls.ENDC}  {msg}")
+        print(f"{cls.BLUE}[INFO]{cls.ENDC}  {msg}")
 
 
 def check_python_version():
@@ -251,7 +251,7 @@ def run_tests():
     print(f"\n{Colors.GREEN if passed == total else Colors.YELLOW}Passed: {passed}/{total}{Colors.ENDC}")
 
     if passed == total:
-        print("\n🎉 All validation checks passed!")
+        print("\n[SUCCESS] All validation checks passed!")
         print("\nSilver Tier is ready for configuration.")
         print("\nNext steps:")
         print("1. Read: SILVER_TIER_SETUP.md")
@@ -261,7 +261,7 @@ def run_tests():
         print("5. Test end-to-end workflow")
         return True
     else:
-        print("\n⚠️  Some checks failed. Please fix the issues above.")
+        print("\n[WARNING] Some checks failed. Please fix the issues above.")
         return False
 
 
